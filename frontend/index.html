@@ -1,0 +1,335 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080d19">
+  <meta name="description" content="CampusFix helps students report campus issues and track progress toward a better campus.">
+  <title>CampusFix — Make Campus Better</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="home-page">
+  <div class="home-glow home-glow-one"></div>
+  <div class="home-glow home-glow-two"></div>
+
+  <header class="home-header">
+    <a class="home-brand" href="index.html" aria-label="CampusFix home">
+      <span class="home-brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 3.5 20 8v8l-8 4.5L4 16V8l8-4.5Z" stroke="currentColor" stroke-width="1.7"/>
+          <path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span>Campus<span class="home-brand-accent">Fix</span></span>
+    </a>
+
+    <button class="home-menu-toggle" id="homeMenuToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="home-nav" id="homeNav" aria-label="Main navigation">
+      <a class="home-nav-link home-nav-active" href="index.html">Home</a>
+      <a class="home-nav-link" href="#how-it-works">How it works</a>
+      <a class="home-nav-link" href="#features">Features</a>
+      <a class="home-nav-link" href="dashboard.html">Issue dashboard</a>
+      <a class="home-admin-link" href="admin.html">Admin login <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main class="home-main">
+    <section class="home-hero">
+      <div class="home-hero-copy" data-reveal>
+        <div class="home-eyebrow">
+          <span class="home-status-dot"></span>
+          A smarter way to improve campus life
+        </div>
+
+        <h1>Small reports.<br> <span class="home-gradient-text">Big improvements.</span></h1>
+
+        <p class="home-hero-description">
+          Broken projectors, messy spaces, maintenance issues —
+          report them in seconds and help make your campus better for everyone.
+        </p>
+
+        <div class="home-hero-actions">
+          <a class="home-button home-button-primary" href="report.html">
+            Report an issue
+            <span aria-hidden="true">↗</span>
+          </a>
+          <a class="home-button home-button-secondary" href="dashboard.html">
+            Explore dashboard
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <div class="home-proof">
+          <span class="home-proof-icon" aria-hidden="true">✦</span>
+          <p>Designed for students. Built for a better campus.</p>
+        </div>
+      </div>
+
+      <div class="home-hero-visual" data-reveal>
+        <div class="home-orbit home-orbit-one"></div>
+        <div class="home-orbit home-orbit-two"></div>
+
+        <div class="home-visual-topline">
+          <span class="home-mini-dot"></span>
+          CAMPUS OVERVIEW
+          <span class="home-live-label">LIVE DATA</span>
+        </div>
+
+        <div class="home-preview-card home-preview-main">
+          <div class="home-preview-heading">
+            <div>
+              <span class="home-card-kicker">ISSUE TRACKER</span>
+              <h3>Campus at a glance</h3>
+            </div>
+            <span class="home-preview-symbol">↗</span>
+          </div>
+
+          <div class="home-preview-stats">
+            <div class="home-preview-stat">
+              <span class="home-stat-icon home-stat-violet">◈</span>
+              <span class="home-stat-label">Total reports</span>
+              <strong id="homeTotalIssues">—</strong>
+            </div>
+            <div class="home-preview-stat">
+              <span class="home-stat-icon home-stat-green">✓</span>
+              <span class="home-stat-label">Resolved</span>
+              <strong id="homeResolvedIssues">—</strong>
+            </div>
+          </div>
+
+          <div class="home-progress-block">
+            <div class="home-progress-copy">
+              <span>Resolution progress</span>
+              <strong id="homeResolutionRate">—</strong>
+            </div>
+            <div class="home-progress-track">
+              <span id="homeProgressBar"></span>
+            </div>
+            <p>Every reported issue is a step toward improvement.</p>
+          </div>
+        </div>
+
+        <div class="home-floating-card home-floating-top">
+          <span class="home-floating-icon home-float-amber">⚡</span>
+          <div>
+            <strong>Report in seconds</strong>
+            <span>Simple and straightforward</span>
+          </div>
+        </div>
+
+        <div class="home-floating-card home-floating-bottom">
+          <span class="home-floating-icon home-float-green">✓</span>
+          <div>
+            <strong>Track progress</strong>
+            <span>Stay in the loop</span>
+          </div>
+          <span class="home-floating-arrow">↗</span>
+        </div>
+
+        <div class="home-visual-footnote">
+          <span></span> REAL ISSUES. VISIBLE PROGRESS.
+        </div>
+      </div>
+
+      <a href="#how-it-works" class="home-scroll-cue" aria-label="Scroll to learn how it works">
+        <span></span> Scroll to explore
+      </a>
+    </section>
+
+    <section class="home-metrics" aria-label="Live campus statistics" data-reveal>
+      <div class="home-metric-intro">
+        <span class="home-section-tag">THE BIG PICTURE</span>
+        <h2>Progress you can see.</h2>
+      </div>
+      <div class="home-metric">
+        <strong id="homeMetricTotal">—</strong>
+        <span>Issues reported</span>
+      </div>
+      <div class="home-metric">
+        <strong id="homeMetricResolved">—</strong>
+        <span>Issues resolved</span>
+      </div>
+      <div class="home-metric">
+        <strong id="homeMetricActive">—</strong>
+        <span>Still in progress</span>
+      </div>
+      <p class="home-metrics-note" id="homeStatsNote">Connecting to campus data…</p>
+    </section>
+
+    <section class="home-section home-how" id="how-it-works">
+      <div class="home-section-heading" data-reveal>
+        <span class="home-section-tag">SIMPLE BY DESIGN</span>
+        <h2>Better campus life,<br><span class="home-muted-gradient">three steps away.</span></h2>
+        <p>No complicated process. Just report, track, and improve.</p>
+      </div>
+
+      <div class="home-steps-grid">
+        <article class="home-step-card" data-reveal>
+          <div class="home-step-top">
+            <span class="home-step-number">01</span>
+            <span class="home-step-icon home-icon-purple">↗</span>
+          </div>
+          <h3>Spot an issue</h3>
+          <p>Notice something that needs attention? Open the report form and tell us what happened.</p>
+          <span class="home-step-bottom">MAKE IT KNOWN <span>→</span></span>
+        </article>
+
+        <article class="home-step-card home-step-featured" data-reveal>
+          <div class="home-step-top">
+            <span class="home-step-number">02</span>
+            <span class="home-step-icon home-icon-blue">◎</span>
+          </div>
+          <h3>Submit the details</h3>
+          <p>Add the location, category, priority, and a short description so the issue is clear.</p>
+          <span class="home-step-bottom">GIVE IT CONTEXT <span>→</span></span>
+        </article>
+
+        <article class="home-step-card" data-reveal>
+          <div class="home-step-top">
+            <span class="home-step-number">03</span>
+            <span class="home-step-icon home-icon-green">✓</span>
+          </div>
+          <h3>Follow the progress</h3>
+          <p>Visit the dashboard to check reported issues and see their latest status.</p>
+          <span class="home-step-bottom">SEE THE CHANGE <span>→</span></span>
+        </article>
+      </div>
+    </section>
+
+    <section class="home-feature-section" id="features">
+      <div class="home-feature-visual" data-reveal>
+        <div class="home-feature-window">
+          <div class="home-window-bar">
+            <span></span><span></span><span></span>
+            <small>CAMPUSFIX / OVERVIEW</small>
+          </div>
+          <div class="home-window-content">
+            <div class="home-window-heading">
+              <div>
+                <span class="home-card-kicker">ISSUE MANAGEMENT</span>
+                <h3>Keep everything<br>in one place.</h3>
+              </div>
+              <span class="home-window-mark">✳</span>
+            </div>
+            <div class="home-window-row">
+              <span class="home-window-emoji">▧</span>
+              <div><strong>Projector not working</strong><small>Classroom · Electrical</small></div>
+              <span class="home-chip home-chip-open">Open</span>
+            </div>
+            <div class="home-window-row">
+              <span class="home-window-emoji home-emoji-blue">⌁</span>
+              <div><strong>Water tap leakage</strong><small>Washroom · Plumbing</small></div>
+              <span class="home-chip home-chip-progress">In progress</span>
+            </div>
+            <div class="home-window-row">
+              <span class="home-window-emoji home-emoji-green">✓</span>
+              <div><strong>Classroom lights fixed</strong><small>Block B · Electrical</small></div>
+              <span class="home-chip home-chip-done">Resolved</span>
+            </div>
+            <p class="home-demo-note">Illustrative examples · Live issues appear in your dashboard</p>
+          </div>
+        </div>
+        <div class="home-feature-stamp"><span>✦</span> LESS CHAOS, MORE CLARITY</div>
+      </div>
+
+      <div class="home-feature-copy" data-reveal>
+        <span class="home-section-tag">MADE TO BE USEFUL</span>
+        <h2>A better way to<br>be heard on campus.</h2>
+        <p class="home-feature-lead">
+          CampusFix turns everyday campus complaints into clear, trackable reports.
+          Because even small problems deserve attention.
+        </p>
+
+        <div class="home-feature-list">
+          <div class="home-feature-item">
+            <span class="home-feature-check">✓</span>
+            <div><strong>Easy issue reporting</strong><p>Share the problem and its location without unnecessary steps.</p></div>
+          </div>
+          <div class="home-feature-item">
+            <span class="home-feature-check">✓</span>
+            <div><strong>Transparent status updates</strong><p>Check whether an issue is open, in progress, or resolved.</p></div>
+          </div>
+          <div class="home-feature-item">
+            <span class="home-feature-check">✓</span>
+            <div><strong>A clearer view for everyone</strong><p>Use search and filters to find the reports that matter.</p></div>
+          </div>
+        </div>
+
+        <a class="home-text-link" href="dashboard.html">Explore the issue dashboard <span>↗</span></a>
+      </div>
+    </section>
+
+    <section class="home-cta-section" data-reveal>
+      <div class="home-cta-decoration home-cta-decoration-one"></div>
+      <div class="home-cta-decoration home-cta-decoration-two"></div>
+      <span class="home-section-tag">YOUR CAMPUS. YOUR VOICE.</span>
+      <h2>See something that<br>could be better?</h2>
+      <p>Don't let small issues become bigger problems. Make your report count.</p>
+      <a class="home-button home-button-light" href="report.html">Report your first issue <span>↗</span></a>
+      <span class="home-cta-footnote">It starts with one report.</span>
+    </section>
+  </main>
+
+  <footer class="home-footer">
+    <div class="home-footer-main">
+      <div class="home-footer-about">
+        <a class="home-brand" href="index.html">
+          <span class="home-brand-icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3.5 20 8v8l-8 4.5L4 16V8l8-4.5Z" stroke="currentColor" stroke-width="1.7"/>
+              <path d="m8.5 12 2.2 2.2 4.8-5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span>Campus<span class="home-brand-accent">Fix</span></span>
+        </a>
+        <p>A student-focused campus issue reporting platform, built to make everyday campus life a little better.</p>
+        <span class="home-footer-built">Made with care <span>♥</span> by Yunus</span>
+      </div>
+
+      <div class="home-footer-column">
+        <h3>Explore</h3>
+        <a href="index.html">Home</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#features">Features</a>
+        <a href="dashboard.html">Issue dashboard</a>
+      </div>
+
+      <div class="home-footer-column">
+        <h3>Get started</h3>
+        <a href="report.html">Report an issue</a>
+        <a href="dashboard.html">Track issues</a>
+        <a href="admin.html">Admin login</a>
+      </div>
+
+      <div class="home-footer-column home-footer-social">
+        <h3>Connect with me</h3>
+        <a href="https://github.com/younusshkh7812-sudo" target="_blank" rel="noopener noreferrer">
+          <span class="home-social-icon">GH</span> GitHub <span>↗</span>
+        </a>
+        <a href="https://www.instagram.com/mohammed_yunus__88/" target="_blank" rel="noopener noreferrer">
+          <span class="home-social-icon">IG</span> Instagram <span>↗</span>
+        </a>
+        <a href="mailto:younusshkh7812@gmail.com">
+          <span class="home-social-icon">@</span> Email me <span>↗</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="home-footer-bottom">
+      <p>© <span id="homeYear"></span> CampusFix. Built for a better campus.</p>
+      <a href="#top" id="homeBackToTop">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script src="../JS/home.js"></script>
+</body>
+</html>

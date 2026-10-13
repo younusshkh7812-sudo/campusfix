@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080b14">
+    <title>Issues Dashboard | CampusFix</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="dashboard-page">
+<header class="dash-header">
+<a href="index.html" class="dash-brand" aria-label="CampusFix home">
+    <span class="dash-brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3.5 20 8v8l-8 4.5L4 16V8l8-4.5Z"
+                  stroke="currentColor"
+                  stroke-width="1.7"/>
+            <path d="m8.5 12 2.2 2.2 4.8-5"
+                  stroke="currentColor"
+                  stroke-width="1.9"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+        </svg>
+    </span>
+
+    <span>Campus<span class="dash-brand-accent">Fix</span></span>
+</a>
+
+
+        <nav class="dash-nav">
+            <a href="index.html">Home</a>
+            <a href="report.html">Report Issue <span>↗</span></a>
+            <a href="dashboard.html" class="dash-nav-active">Dashboard</a>
+        </nav>
+
+        <a href="admin.html" class="dash-admin-link">Admin Login ↗</a>
+    </header>
+
+    <main class="dash-main">
+
+        <section class="dash-welcome">
+            <div>
+                <div class="dash-eyebrow">
+                    <span class="dash-live-dot"></span>
+                    CAMPUSFIX / OVERVIEW
+                </div>
+
+                <h1>Campus issues,<br><span>in focus.</span></h1>
+
+                <p>Track reported problems, check their progress, and see how our campus is improving.</p>
+            </div>
+
+            <a href="report.html" class="dash-report-button">
+                <span>＋</span> Report an issue <span>↗</span>
+            </a>
+        </section>
+
+        <section class="dash-stats" aria-label="Issue statistics">
+            <article class="dash-stat-card dash-stat-total">
+                <div class="dash-stat-top">
+                    <span>Total issues</span>
+                    <span class="dash-stat-icon">▤</span>
+                </div>
+                <p id="totalIssues">0</p>
+                <small>All submitted reports</small>
+                <div class="dash-stat-line"></div>
+            </article>
+
+            <article class="dash-stat-card dash-stat-open">
+                <div class="dash-stat-top">
+                    <span>Open</span>
+                    <span class="dash-stat-icon">◷</span>
+                </div>
+                <p id="openIssues">0</p>
+                <small>Waiting for attention</small>
+                <div class="dash-stat-line"></div>
+            </article>
+
+            <article class="dash-stat-card dash-stat-progress">
+                <div class="dash-stat-top">
+                    <span>In progress</span>
+                    <span class="dash-stat-icon">↗</span>
+                </div>
+                <p id="progressIssues">0</p>
+                <small>Currently being addressed</small>
+                <div class="dash-stat-line"></div>
+            </article>
+
+            <article class="dash-stat-card dash-stat-resolved">
+                <div class="dash-stat-top">
+                    <span>Resolved</span>
+                    <span class="dash-stat-icon">✓</span>
+                </div>
+                <p id="resolvedIssues">0</p>
+                <small>Completed reports</small>
+                <div class="dash-stat-line"></div>
+            </article>
+        </section>
+
+        <section class="dash-issues-panel">
+            <div class="dash-panel-heading">
+                <div>
+                    <span class="dash-section-label">ISSUE MANAGEMENT</span>
+                    <h2>Reported issues</h2>
+                    <p>Search and filter campus reports.</p>
+                </div>
+
+                <a href="report.html" class="dash-secondary-button">＋ New report</a>
+            </div>
+
+            <div class="dash-filters">
+                <div class="dash-search-wrap">
+                    <span class="dash-search-icon">⌕</span>
+                    <input
+                        type="search"
+                        id="searchInput"
+                        placeholder="Search title or location..."
+                        aria-label="Search by title or location"
+                    >
+                </div>
+
+                <select id="statusFilter" aria-label="Filter by status">
+                    <option value="All">All statuses</option>
+                    <option value="Open">Open</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Resolved">Resolved</option>
+                </select>
+
+                <select id="priorityFilter" aria-label="Filter by priority">
+                    <option value="All">All priorities</option>
+                    <option value="High">High priority</option>
+                    <option value="Medium">Medium priority</option>
+                    <option value="Low">Low priority</option>
+                </select>
+            </div>
+
+            <div class="dash-results-bar">
+                <p id="issueCount" aria-live="polite">Loading issues...</p>
+                <span class="dash-results-indicator">
+                    <span></span> Live issue data
+                </span>
+            </div>
+
+            <p id="errorMessage" class="dash-error" role="alert"></p>
+
+            <section id="issuesContainer" aria-label="Reported campus issues">
+                <!-- Existing dashboard.js renders issue cards here -->
+            </section>
+        </section>
+
+        <section class="dash-bottom-cta">
+            <div class="dash-cta-symbol">✳</div>
+            <div>
+                <h3>Something needs fixing?</h3>
+                <p>Your report can help make campus life better for everyone.</p>
+            </div>
+            <a href="report.html">Submit a report ↗</a>
+        </section>
+
+    </main>
+
+    <footer class="dash-footer">
+        <a href="index.html" class="dash-footer-brand">Campus<span>Fix</span></a>
+        <span>Built with care by Yunus ✳</span>
+        <a href="https://github.com/younusshkh7812-sudo" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    </footer>
+
+    <script src="../JS/api.js"></script>
+    <script src="../JS/dashboard.js"></script>
+</body>
+</html>

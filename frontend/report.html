@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080b14">
+    <title>Report an Issue | CampusFix</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="report-page">
+
+    <header class="report-header">
+        <a href="index.html" class="report-brand">
+            <span class="report-brand-icon">C<span>+</span></span>
+            <span>Campus<span class="report-brand-accent">Fix</span></span>
+        </a>
+
+        <nav class="report-nav">
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Issues Dashboard</a>
+            <a href="admin.html">Admin Login ↗</a>
+        </nav>
+    </header>
+
+    <main class="report-main">
+        <section class="report-intro">
+            <div class="report-eyebrow">
+                <span class="report-dot"></span>
+                YOUR VOICE MATTERS
+            </div>
+
+            <h1>Let's make campus<br><span>better together.</span></h1>
+
+            <p>
+                Spotted something that needs attention?
+                Tell us about it. Your report helps make our campus
+                safer, smoother and better for everyone.
+            </p>
+
+            <div class="report-benefits">
+                <div class="report-benefit">
+                    <span class="report-benefit-icon">↗</span>
+                    <div>
+                        <strong>Quick reporting</strong>
+                        <small>Share an issue in minutes</small>
+                    </div>
+                </div>
+
+                <div class="report-benefit">
+                    <span class="report-benefit-icon">◎</span>
+                    <div>
+                        <strong>Track progress</strong>
+                        <small>Follow issues on the dashboard</small>
+                    </div>
+                </div>
+
+                <div class="report-benefit">
+                    <span class="report-benefit-icon">✳</span>
+                    <div>
+                        <strong>Better campus</strong>
+                        <small>Help improve everyday life</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="report-form-card">
+            <div class="report-form-heading">
+                <div>
+                    <span class="report-form-kicker">CAMPUSFIX / NEW REPORT</span>
+                    <h2>Report an issue</h2>
+                    <p>Give us the details so the issue can be understood.</p>
+                </div>
+                <div class="report-form-symbol">✳</div>
+            </div>
+
+            <div class="report-form-divider"></div>
+
+            <div class="report-field">
+                <label for="issueTitle">Issue title <span>*</span></label>
+                <input
+                    id="issueTitle"
+                    type="text"
+                    required
+                    maxlength="120"
+                    placeholder="e.g. Projector not working"
+                >
+            </div>
+
+            <div class="report-field">
+                <label for="description">Description</label>
+                <textarea
+                    id="description"
+                    rows="4"
+                    placeholder="Describe what happened and what needs fixing..."
+                ></textarea>
+                <small class="report-field-hint">Add useful details to help identify the problem.</small>
+            </div>
+
+            <div class="report-field-row">
+                <div class="report-field">
+                    <label for="category">Category</label>
+                    <select id="category">
+                        <option value="Electrical">Electrical</option>
+                        <option value="Internet">Internet</option>
+                        <option value="Water">Water</option>
+                        <option value="Cleanliness">Cleanliness</option>
+                        <option value="Furniture">Furniture</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="report-field">
+                    <label for="priority">Priority</label>
+                    <select id="priority">
+                        <option value="Low">Low</option>
+                        <option value="Medium" selected>Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="report-field">
+                <label for="location">Location <span>*</span></label>
+                <input
+                    id="location"
+                    type="text"
+                    required
+                    maxlength="150"
+                    placeholder="e.g. CSE Block, Room 204"
+                >
+            </div>
+
+            <div class="report-required-note">
+                <span>*</span> Required fields
+            </div>
+
+            <button type="button" id="submitBtn" class="report-submit-btn">
+                <span>Submit report</span>
+                <span class="report-submit-arrow">↗</span>
+            </button>
+
+            <p class="report-form-footnote">
+                Thank you for helping make our campus better.
+            </p>
+        </section>
+    </main>
+
+    <footer class="report-footer">
+        <a href="index.html">← Back to CampusFix home</a>
+        <span>Built with care by Yunus ✳</span>
+    </footer>
+
+    <script src="../JS/report.js"></script>
+</body>
+</html>

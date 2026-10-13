@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080b14">
+
+    <title>Admin Login | CampusFix</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="admin-login-page">
+
+<main class="admin-login-shell">
+<a href="index.html" class="admin-brand" aria-label="CampusFix home">
+<span class="admin-brand-icon home-brand-icon">
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 3.5 20 8v8l-8 4.5L4 16V8l8-4.5Z"
+                stroke="currentColor"
+                stroke-width="1.7"/>
+                <path d="m8.5 12 2.2 2.2 4.8-5"
+                stroke="currentColor"
+                stroke-width="1.9"
+                stroke-linecap="round"
+                stroke-linejoin="round"/>
+            </svg>
+        </span>
+        <span>Campus<span class="home-brand-accent">Fix</span></span>
+</a>
+
+
+        <section class="admin-login-panel">
+
+            <div class="admin-login-symbol" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <rect x="4" y="10" width="16" height="11" rx="3"
+                        stroke="currentColor" stroke-width="1.6"/>
+                    <path d="M8 10V7a4 4 0 0 1 8 0v3"
+                        stroke="currentColor" stroke-width="1.6"
+                        stroke-linecap="round"/>
+                    <circle cx="12" cy="15" r="1.2"
+                        fill="currentColor"/>
+                    <path d="M12 16.2V18"
+                        stroke="currentColor" stroke-width="1.6"
+                        stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <span class="admin-login-eyebrow">SECURE ADMIN ACCESS</span>
+
+            <h1>Welcome back.</h1>
+
+            <p class="admin-login-description">
+                Sign in to manage campus reports and track issue resolution.
+            </p>
+
+            <form id="adminLoginForm" class="admin-login-form">
+
+                <div class="admin-field">
+                    <label for="email">Admin email</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        autocomplete="username"
+                        placeholder="Enter admin email"
+                    >
+                </div>
+
+                <div class="admin-field">
+                    <label for="password">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        required
+                        autocomplete="current-password"
+                        placeholder="Enter your password"
+                    >
+                </div>
+
+                <button type="submit" class="admin-login-button">
+                    <span>Sign in to dashboard</span>
+                    <span aria-hidden="true">↗</span>
+                </button>
+
+                <p id="loginMessage" class="admin-login-message" role="alert" aria-live="polite"></p>
+
+            </form>
+
+            <div class="admin-security-note">
+                <span class="admin-security-dot"></span>
+                Protected administrative access
+            </div>
+
+        </section>
+
+        <footer class="admin-login-footer">
+            <a href="index.html">← Back to CampusFix</a>
+            <span>Built with care by Yunus ✳</span>
+        </footer>
+
+    </main>
+
+    <script src="../JS/admin.js"></script>
+
+</body>
+</html>
