@@ -6,27 +6,48 @@ from flask import Flask, request, jsonify, session
 from flask_cors import CORS
 from werkzeug.security import check_password_hash
 
-from database import create_table, get_connection
+from database import create_table, get_connection, DATABASE_URL
 
 
 app = Flask(__name__)
 
-# Development setup: keep the same secret during this run.
-# Set CAMPUSFIX_SECRET_KEY in environment for a persistent secret.
-app.secret_key = os.environ.get("CAMPUSFIX_SECRET_KEY") or secrets.token_hex(32)
+app.secret_key = (
+    os.environ.get("CAMPUSFIX_SECRET_KEY")
+    or secrets.token_hex(32)
+)
 
 CORS(
     app,
-    resources={r"/api/*": {"origins": "http://127.0.0.1:5501"}},
+    resources={
+        r"/api/*": {
+            "origins": os.environ.get(
+                "CORS_ORIGIN",
+                "http://127.0.0.1:5501"
+            ).split(",")
+        }
+    },
     supports_credentials=True
 )
 
 app.config.update(
     SESSION_COOKIE_HTTPONLY=True,
     SESSION_COOKIE_SAMESITE="Lax",
-    SESSION_COOKIE_SECURE=False  # Local HTTP development only
+    SESSION_COOKIE_SECURE=(
+        os.environ.get("SESSION_COOKIE_SECURE", "false").lower()
+        == "true"
+    )
 )
 
+
+def execute_query(connection, query, parameters=()):
+    """Run a query using the correct placeholder for each database."""
+    if DATABASE_URL:
+        query = query.replace("?", "%s")
+
+    return connection.execute(query, parameters)
+
+
+# Create the required tables when the backend starts.
 create_table()
 
 
@@ -35,18 +56,23 @@ def admin_login():
     data = request.get_json(silent=True)
 
     if not data:
-        return jsonify({"error": "Email and password are required"}), 400
+        return jsonify({
+            "error": "Email and password are required"
+        }), 400
 
     email = data.get("email", "").strip().lower()
     password = data.get("password", "")
 
     if not email or not password:
-        return jsonify({"error": "Email and password are required"}), 400
+        return jsonify({
+            "error": "Email and password are required"
+        }), 400
 
     connection = get_connection()
 
     try:
-        admin = connection.execute(
+        admin = execute_query(
+            connection,
             "SELECT * FROM admins WHERE email = ?",
             (email,)
         ).fetchone()
@@ -56,26 +82,37 @@ def admin_login():
     if admin is None or not check_password_hash(
         admin["password_hash"], password
     ):
-        return jsonify({"error": "Invalid email or password"}), 401
+        return jsonify({
+            "error": "Invalid email or password"
+        }), 401
 
     session.clear()
     session["admin_id"] = admin["id"]
 
-    return jsonify({"message": "Admin login successful"}), 200
+    return jsonify({
+        "message": "Admin login successful"
+    }), 200
 
 
 @app.route("/api/admin/logout", methods=["POST"])
 def admin_logout():
     session.clear()
-    return jsonify({"message": "Logged out successfully"}), 200
+
+    return jsonify({
+        "message": "Logged out successfully"
+    }), 200
 
 
 @app.route("/api/admin/session", methods=["GET"])
 def admin_session():
     if "admin_id" not in session:
-        return jsonify({"authenticated": False}), 401
+        return jsonify({
+            "authenticated": False
+        }), 401
 
-    return jsonify({"authenticated": True}), 200
+    return jsonify({
+        "authenticated": True
+    }), 200
 
 
 @app.route("/api/issues", methods=["POST"])
@@ -83,13 +120,17 @@ def create_issue():
     data = request.get_json(silent=True)
 
     if not data:
-        return jsonify({"error": "No issue data received"}), 400
+        return jsonify({
+            "error": "No issue data received"
+        }), 400
 
     title = data.get("title", "").strip()
     location = data.get("location", "").strip()
 
     if not title or not location:
-        return jsonify({"error": "Title and location are required"}), 400
+        return jsonify({
+            "error": "Title and location are required"
+        }), 400
 
     priority = data.get("priority", "Medium")
     category = data.get("category", "Other")
@@ -99,14 +140,20 @@ def create_issue():
     connection = get_connection()
 
     try:
-        cursor = connection.execute("""
+        cursor = execute_query(
+            connection,
+            """
             INSERT INTO issues
             (title, priority, category, location, description, status)
             VALUES (?, ?, ?, ?, ?, ?)
-        """, (title, priority, category, location, description, status))
+            RETURNING id
+            """,
+            (title, priority, category, location, description, status)
+        )
 
+        issue_id = cursor.fetchone()["id"]
         connection.commit()
-        issue_id = cursor.lastrowid
+
     finally:
         connection.close()
 
@@ -129,7 +176,8 @@ def get_issues():
     connection = get_connection()
 
     try:
-        rows = connection.execute(
+        rows = execute_query(
+            connection,
             "SELECT * FROM issues ORDER BY id DESC"
         ).fetchall()
     finally:
@@ -142,37 +190,44 @@ def get_issues():
 
 @app.route("/api/issues/<int:issue_id>/status", methods=["PATCH"])
 def update_issue_status(issue_id):
-    # 1. Check whether an admin is logged in
+    # Only logged-in admins can update issue status.
     if "admin_id" not in session:
-        return jsonify({"error": "Admin login required"}), 401
+        return jsonify({
+            "error": "Admin login required"
+        }), 401
 
-    # 2. Read the new status
     data = request.get_json(silent=True)
 
     if not data:
-        return jsonify({"error": "Status is required"}), 400
+        return jsonify({
+            "error": "Status is required"
+        }), 400
 
     status = data.get("status", "").strip()
 
-    # 3. Allow only these status values
     allowed_statuses = ["Open", "In Progress", "Resolved"]
 
     if status not in allowed_statuses:
-        return jsonify({"error": "Invalid status"}), 400
+        return jsonify({
+            "error": "Invalid status"
+        }), 400
 
-    # 4. Update the database
     connection = get_connection()
 
     try:
-        cursor = connection.execute(
+        cursor = execute_query(
+            connection,
             "UPDATE issues SET status = ? WHERE id = ?",
             (status, issue_id)
         )
 
         if cursor.rowcount == 0:
-            return jsonify({"error": "Issue not found"}), 404
+            return jsonify({
+                "error": "Issue not found"
+            }), 404
 
         connection.commit()
+
     finally:
         connection.close()
 
@@ -184,4 +239,5 @@ def update_issue_status(issue_id):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
+
