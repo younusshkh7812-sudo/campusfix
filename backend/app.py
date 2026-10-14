@@ -2,7 +2,7 @@
 import os
 import secrets
 
-from flask import Flask, request, jsonify, session
+from flask import Flask, request, jsonify, session, send_from_directory
 from flask_cors import CORS
 from werkzeug.security import check_password_hash
 
@@ -37,7 +37,27 @@ app.config.update(
         == "true"
     )
 )
+@app.route("/")
+def home():
+    return send_from_directory(
+        os.path.join(os.path.dirname(__file__), "..", "frontend"),
+        "index.html"
+    )
 
+@app.route("/JS/<path:filename>")
+def serve_js(filename):
+    return send_from_directory(
+        os.path.join(os.path.dirname(__file__), "..", "JS"),
+        filename
+    )
+
+
+@app.route("/css/<path:filename>")
+def serve_css(filename):
+    return send_from_directory(
+        os.path.join(os.path.dirname(__file__), "..", "css"),
+        filename
+    )
 
 def execute_query(connection, query, parameters=()):
     """Run a query using the correct placeholder for each database."""
