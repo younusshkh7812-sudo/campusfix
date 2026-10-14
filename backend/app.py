@@ -59,6 +59,13 @@ def dashboard_page():
         "dashboard.html"
     )
 
+@app.route("/admin.html")
+def admin_page():
+    return send_from_directory(
+        os.path.join(os.path.dirname(__file__), "..", "frontend"),
+        "admin.html"
+    )
+
 
 @app.route("/JS/<path:filename>")
 def serve_js(filename):
