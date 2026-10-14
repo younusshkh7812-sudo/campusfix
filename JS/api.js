@@ -1,5 +1,5 @@
 
-const API_URL = "http://127.0.0.1:5000/api";
+const API_URL = "/api";
 
 // Get all saved issues from the backend
 async function getIssues() {
