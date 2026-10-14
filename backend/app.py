@@ -44,6 +44,22 @@ def home():
         "index.html"
     )
 
+@app.route("/report.html")
+def report_page():
+    return send_from_directory(
+        os.path.join(os.path.dirname(__file__), "..", "frontend"),
+        "report.html"
+    )
+
+
+@app.route("/dashboard.html")
+def dashboard_page():
+    return send_from_directory(
+        os.path.join(os.path.dirname(__file__), "..", "frontend"),
+        "dashboard.html"
+    )
+
+
 @app.route("/JS/<path:filename>")
 def serve_js(filename):
     return send_from_directory(
