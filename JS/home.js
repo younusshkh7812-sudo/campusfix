@@ -88,7 +88,7 @@ async function loadHomeStats() {
   const statsNote = document.getElementById("homeStatsNote");
 
   try {
-    const response = await fetch("http://127.0.0.1:5000/api/issues");
+    const response = await fetch(`${API_URL}/api/issues`);
 
     if (!response.ok) {
       throw new Error("The issues API returned an error.");
