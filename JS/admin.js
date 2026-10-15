@@ -33,7 +33,7 @@ loginForm.addEventListener("submit", async function (event) {
         loginMessage.textContent = "Login successful!";
 
         // Temporary: confirm login before building the admin dashboard.
-        window.location.href = "admin-dashboard.html";
+        window.location.href = "/dashboard.html";
     } catch (error) {
         loginMessage.textContent =
             "Cannot connect to the backend. Check if the server is running.";

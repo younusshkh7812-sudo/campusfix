@@ -84,6 +84,8 @@ if ("IntersectionObserver" in window) {
 }
 
 // 4. Load actual issue statistics from Flask
+const API_URL = "/api";
+
 async function loadHomeStats() {
   const statsNote = document.getElementById("homeStatsNote");
 
