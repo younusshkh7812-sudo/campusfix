@@ -1,34 +1,45 @@
 # CampusFix 🏫
 
-**A campus issue reporting and tracking system.**
+**Report it. Track it. Fix it.**
 
-CampusFix is a web application designed to help students report campus-related problems and track their status in one place.
+CampusFix is a full-stack campus issue reporting system that helps students report problems and track their progress. Administrators can review reported issues and update their status through a dedicated admin dashboard.
+
+🌐 **Live Website:** https://campusfix-6lb8.onrender.com
 
 ## ✨ Features
 
-- Report campus issues with a title, category, location, priority, and description.
-- Store reported issues in an SQLite database.
-- View reported issues on the dashboard.
-- Track issue statuses such as Open, In Progress, and Resolved.
-- Search and filter issues on the dashboard.
-- View dashboard statistics.
-- Provide a Flask-based API for frontend-backend communication.
-
-> Note: Features requiring authentication or administrator access should be documented according to the functionality actually implemented.
+- 📝 Report campus issues with title, category, location, priority, and description.
+- 📋 View, search, and filter reported issues.
+- 🔄 Track issue statuses: Open, In Progress, and Resolved.
+- 📊 View campus issue statistics.
+- 🔐 Admin login, session management, and logout.
+- 🛠️ Admin dashboard for reviewing issues and updating statuses.
+- 💾 Persistent database storage.
+- 🧪 Automated API tests using Python `unittest`.
 
 ## 🛠️ Tech Stack
 
 - **Frontend:** HTML, CSS, JavaScript
 - **Backend:** Python, Flask
-- **Database:** SQLite
-- **Testing:** Python unittest
+- **Local Database:** SQLite
+- **Production Database:** PostgreSQL (Neon)
+- **Testing:** Python `unittest`
+- **Version Control:** Git and GitHub
+- **Deployment:** Render
+
+## 🌐 Live Deployment
+
+- **Website:** https://campusfix-6lb8.onrender.com
+- **Issues API:** https://campusfix-6lb8.onrender.com/api/issues
+
+The deployed application uses PostgreSQL for persistent production storage. Local development can use SQLite.
 
 ## 📁 Project Structure
 
 ```text
 CampusFix/
 ├── .github/
-│   ├── ISSUE_TEMPLATE/
+│   ├── issue_template/
 │   └── pull_request_template.md
 ├── backend/
 │   ├── app.py
@@ -39,31 +50,20 @@ CampusFix/
 ├── frontend/
 │   ├── index.html
 │   ├── report.html
-│   └── dashboard.html
+│   ├── dashboard.html
+│   ├── admin.html
+│   └── admin-dashboard.html
 ├── JS/
-│   ├── api.js
-│   ├── report.js
-│   └── dashboard.js
 ├── css/
-│   └── style.css
 ├── docs/
-│   └── architecture.md
 ├── tests/
 │   └── test_api.py
-├── .gitignore
 ├── CONTRIBUTING.md
 ├── LICENSE
 └── README.md
 ```
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Python 3
-- Git
-- A modern web browser
-- Visual Studio Code (recommended)
+## 🚀 Run Locally
 
 ### 1. Clone the repository
 
@@ -74,55 +74,81 @@ cd campusfix
 
 ### 2. Create and activate a virtual environment
 
-**Windows:**
-
-```bash
+```powershell
 python -m venv .venv
-.venv\Scripts\activate
+.venv\Scripts\Activate.ps1
 ```
 
 ### 3. Install dependencies
 
-```bash
+```powershell
 python -m pip install -r backend/requirements.txt
 ```
 
-### 4. Start the backend
+### 4. Start the application
 
-Follow the backend configuration instructions and run the Flask application from the correct working directory.
+```powershell
+cd backend
+python app.py
+```
 
-### 5. Open the frontend
+Open **http://127.0.0.1:5000/** in your browser.
 
-Open `frontend/index.html` with VS Code Live Server, or use another local static server.
+For local development, SQLite is used when `DATABASE_URL` is not configured. To use PostgreSQL locally, configure your own `DATABASE_URL` environment variable. Never commit database credentials or secret keys to GitHub.
 
-Ensure that the frontend API URL matches the backend address and that the backend allows requests from the frontend origin.
+## 🧪 Run Tests
 
-## 🧪 Running Tests
+From the project root, activate your virtual environment and run:
 
-From the project root, run:
-
-```bash
+```powershell
 python -m unittest discover -s tests -v
 ```
 
-## 🔌 API
+## 🔌 API Endpoints
 
-The backend exposes REST API endpoints for supported CampusFix operations.
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/api/issues` | Retrieve reported issues |
+| POST | `/api/issues` | Submit a new issue |
+| POST | `/api/admin/login` | Admin login |
+| GET | `/api/admin/session` | Check admin session |
+| POST | `/api/admin/logout` | Admin logout |
+| PATCH | `/api/issues/<issue_id>/status` | Update issue status with admin authentication |
 
-Check the Flask routes in `backend/app.py` for the exact endpoints, request formats, and response codes.
+## 🔄 Issue Statuses
+
+- **Open:** The issue has been reported.
+- **In Progress:** Work on the issue is ongoing.
+- **Resolved:** The issue has been resolved.
+
+## 🔒 Security
+
+- Admin-only actions require an authenticated session.
+- Password verification uses secure password-hashing utilities.
+- Production secrets and database credentials should be configured through environment variables.
+- Never commit passwords, database URLs, or secret keys to the repository.
 
 ## 🤝 Contributing
 
-Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before submitting changes.
+Contributions, bug reports, and feature suggestions are welcome.
 
-You can report bugs or suggest features using the GitHub issue templates.
+1. Fork the repository.
+2. Create a branch for your changes.
+3. Make your changes and run the tests.
+4. Submit a pull request.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 ## 📄 License
 
-See the [LICENSE](LICENSE) file for the project's licensing terms.
+See [LICENSE](LICENSE) for licensing details.
 
 ## 👨‍💻 Maintainer
 
 **Yunus**
 
-Built to make campus issue reporting more organized and transparent.
+Built with care to make campus issue reporting more organized and transparent.
+
+---
+
+*CampusFix — Report it. Track it. Fix it.*
