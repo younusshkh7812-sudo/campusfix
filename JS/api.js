@@ -1,5 +1,5 @@
 
-const API_URL = "/api";
+window.API_URL = "/api";
 
 // Get all saved issues from the backend
 async function getIssues() {
