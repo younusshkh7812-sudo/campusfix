@@ -90,7 +90,7 @@ async function loadHomeStats() {
   const statsNote = document.getElementById("homeStatsNote");
 
   try {
-    const response = await fetch(`${API_URL}/api/issues`);
+    const response = await fetch(`${API_URL}/issues`);
 
     if (!response.ok) {
       throw new Error("The issues API returned an error.");
