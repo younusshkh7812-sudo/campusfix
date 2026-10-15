@@ -65,7 +65,12 @@ def admin_page():
         os.path.join(os.path.dirname(__file__), "..", "frontend"),
         "admin.html"
     )
-
+@app.route("/admin-dashboard.html")
+def admin_dashboard_page():
+    return send_from_directory(
+        os.path.join(os.path.dirname(__file__), "..", "frontend"),
+        "admin-dashboard.html"
+    )
 
 @app.route("/JS/<path:filename>")
 def serve_js(filename):
